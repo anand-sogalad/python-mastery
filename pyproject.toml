@@ -1,7 +1,8 @@
+# project configurations
 [project]
 name = "python-mastery"
 version = "0.1.0"
-description = "Add your description here"
+description = "A structured Python learning repository following PCEP, PCAP, and PCPP1 certification paths, featuring hands-on practice, mini-projects, and comprehensive test coverage."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -10,3 +11,17 @@ dependencies = [
     "pytest-html>=4.1.1",
     "pytest-xdist>=3.8.0",
 ]
+
+# pytest configurations
+[tool.pytest.ini_options]
+addopts = [
+    "-v",               # verbose output
+    "-s",               # don't capture stdout/stderr
+    "--tb=short",       # short traceback format
+    "--strict-markers", # treat unknown markers as errors
+    "--strict-config",  # treat unknown config options as errors
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
