@@ -19,3 +19,19 @@ class Person:
 
     def __add__(self, other):
         return self.weight + other.weight
+
+
+class Addition:
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        if isinstance(other.value, (int, float)) and isinstance(
+            self.value, (int, float)
+        ):
+            return self.value + other.value
+        if isinstance(other.value, str) and isinstance(self.value, str):
+            return self.value + " " + other.value
+        raise TypeError(
+            f"Cannot do additoin between {type(self.value)} and {type(other.value)}"
+        )
