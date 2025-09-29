@@ -12,6 +12,7 @@ dependencies = [
     "pytest-xdist>=3.8.0",
 ]
 
+
 # pytest configurations
 [tool.pytest.ini_options]
 addopts = [
