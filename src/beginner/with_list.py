@@ -2,8 +2,6 @@
 #       It is ordered, mutable and collection of any data types
 
 
-from posixpath import sep
-
 if __name__ == "__main__":
     # working with lists
     courses = ["Mathematics", "History", "Science", "English", "Kannada"]
