@@ -2,7 +2,7 @@
 
 # Strings: Strings are immutable sequence of unicode charecters, once they created they cannot be modified
 
-# indexing: Indexing the process of extracting an element from a specific index of an item
+# indexing: Indexing is the process of extracting an element from a specific index of an item
 string = "012345"
 
 if __name__ == "__main__":
@@ -16,3 +16,17 @@ if __name__ == "__main__":
     print(string[:-1])  # extracting substring from 0th to last (excluded)
     print(string[2:-1])  # extracting substring from 2th to last (excluded)
     print(string[::-1])  # reversing a string
+
+# Most used string methhods
+string = "i am a string used for testing"
+
+if __name__ == "__main__":
+    print(f"convert to upper case: {string.upper()}")
+    print(f"covnert to lower case: {string.lower()}")
+    print(f"check if the string is lower: {string.islower()}")
+    print(f"check if the string is upper: {string.isupper()}")
+    print(f"Check if the substring present: {string.find('am')}")
+    print(f"convert to title: {string.title()}")
+    print(f"capitalize 1st letter of a string: {string.capitalize()}")
+    print(f"Convert to list: {string.split()}")
+    print(f"replace am with are: {string.replace('am', 'are')}")
