@@ -86,3 +86,6 @@ if __name__ == "__main__":
     # deleting items
     del dictionary["name"]
     print(f"Dictionary: {dictionary}")
+
+    dictionary.popitem()
+    print(f"Dictionary: {dictionary}")
