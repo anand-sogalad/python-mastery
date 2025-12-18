@@ -30,3 +30,24 @@ if __name__ == "__main__":
     print(f"capitalize 1st letter of a string: {string.capitalize()}")
     print(f"Convert to list: {string.split()}")
     print(f"replace am with are: {string.replace('am', 'are')}")
+
+
+# Lists: List is data structure in python used to store any data. it is ordered and mutable data structure
+
+# Indexing and slicing concepts remains same as string
+
+# Most used list methods
+items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+if __name__ == "__main__":
+    items.reverse()
+    print(f"items got reversed: {items}")
+
+    items.sort()
+    print(f"items got sorted: {items}")
+
+    print(f"total {items.count(10)} count of 10 are present in {items}")
+    items.index(10)
+    items.append(11)
+    items.extend([12, 13, 14, 15])
+    print(items)
