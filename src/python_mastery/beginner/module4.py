@@ -51,3 +51,14 @@ if __name__ == "__main__":
     items.append(11)
     items.extend([12, 13, 14, 15])
     print(items)
+
+
+# Tuples: Tuples are data structures used store any data typpe but unlike list they are immutable
+
+# indexing and slicing work as same as sting/list
+tuple_items = (1, 2, 3, 4, 5)
+
+# tuple methods
+if __name__ == "__main__":
+    print(tuple_items.count(1))
+    print(tuple_items.index(1))
