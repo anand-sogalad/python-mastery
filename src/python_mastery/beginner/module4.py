@@ -3,7 +3,7 @@
 # Strings: Strings are immutable sequence of unicode charecters, once they created they cannot be modified
 
 # indexing: Indexing is the process of extracting an element from a specific index of an item
-string = "012345"
+string: str = "012345"
 
 if __name__ == "__main__":
     print(string[0], end=", ")  # extracting 0th index
@@ -62,3 +62,27 @@ tuple_items = (1, 2, 3, 4, 5)
 if __name__ == "__main__":
     print(tuple_items.count(1))
     print(tuple_items.index(1))
+
+
+# Dictonaries: Dictionary are data structures in python that is used to store key and value pairs
+# they are mutable and ordered
+
+# creating dictionary
+dictionary: dict[str, str] = {}
+
+if __name__ == "__main__":
+    # inseting key:value to dictionary
+    dictionary["name"] = "anand"
+    print(f"Dictionary: {dictionary}")
+
+    # inserting multiple key:value to the dictionary
+    dictionary.update({"name": "Niranjan", "class": "NA"})
+    print(f"Dictionary: {dictionary}")
+
+    # accessing items
+    print(dictionary.get("name"))
+    print(dictionary.get("class"))
+
+    # deleting items
+    del dictionary["name"]
+    print(f"Dictionary: {dictionary}")
