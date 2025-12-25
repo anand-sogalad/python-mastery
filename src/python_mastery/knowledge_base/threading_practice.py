@@ -1,31 +1,58 @@
 import threading
 import time
-from concurrent.futures import ThreadPoolExecutor
+
+# Threading concepts
 
 # What is thread?
-# A thread is smallest unit of execution in a process that does specific task
+# A thread is a smallest unit of execution in a process that does a specific task
+
+# Example
+
+# execution in sync manner (everything runs in main thread)
+start_time = time.perf_counter()
 
 
-def square(data: list[int]) -> list[int]:
-    return [x**2 for x in data]
+def sleep():
+    print("Sleeping for a second")
+    time.sleep(1)
+    print("Done sleeping")
 
 
-if __name__ == "__main__":
-    chunks = range(1, 10000000), range(10000000, 0, -1)
+# calling sleep() for 3 times
+sleep()
+sleep()
+sleep()
 
-    # using threading.Thread
-    st = time.perf_counter()
-    threads: list[threading.Thread] = []
-    for chunk in chunks:
-        t = threading.Thread(target=square, args=(chunk,))
-        t.start()
-        threads.append(t)
-    for thread in threads:
-        thread.join()
-    print(f"Total time: {time.perf_counter() - st}")
+end_time = time.perf_counter()
 
-    # using thread pool executor
-    st = time.perf_counter()
-    with ThreadPoolExecutor(max_workers=len(chunks)) as worker:
-        t = worker.map(square, chunks)
-    print(f"Total time: {time.perf_counter() - st}")
+print(f"Time taken to complete tasks in sync manner: {round(end_time - start_time, 2)} second(s)")
+
+# now lets achieve the same in async manner using Thread
+
+start_time = time.perf_counter()
+
+
+def sleep1():
+    print("Sleeping for a second")
+    time.sleep(1)
+    print("Done sleeping")
+
+
+# create thread and assingn task
+t1 = threading.Thread(target=sleep1)
+t2 = threading.Thread(target=sleep1)
+t3 = threading.Thread(target=sleep1)
+
+# now sart the threads
+t1.start()
+t2.start()
+t3.start()
+
+# wait for threads to finish the tasks
+t1.join()
+t2.join()
+t3.join()
+
+end_time = time.perf_counter()
+
+print(f"Time taken to complete tasks in async manner: {round(end_time - start_time, 2)} second(s)")
