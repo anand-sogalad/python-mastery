@@ -66,15 +66,42 @@ def sleep2(seconds: int | float) -> str:
 # creating thread pool executor
 with ThreadPoolExecutor() as executor:
     seconds = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-    futures = [executor.submit(sleep2, second) for second in seconds]
+    futures = [executor.submit(sleep2, second) for second in seconds]  # returns the list futures
 
     # [
     #     print(future.result()) for future in futures
     # ]  # use this to get the results (maintains the sequence)
 
-    # or use as_completed() method as well
+    # or use as_completed() method as well (this srart returning as soon as future is ready)
     for f in as_completed(futures):
         print(f.result())
+
+
+end_time = time.perf_counter()
+
+print(f"Finished in {round(end_time - start_time, 2)} second(s)")
+
+# --------------------------------------------------------------------------------------------------
+
+start_time = time.perf_counter()
+
+
+def sleep3(seconds: int | float) -> str:
+    print(f"Sleeping for {seconds} second(s)")
+    time.sleep(seconds)
+    return f"Done sleeping {seconds} second(s)"
+
+
+# creating thread pool executor
+with ThreadPoolExecutor() as executor:
+    seconds = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    results = executor.map(sleep3, seconds)  # returns iterator object of results
+
+    # [print(result) for result in results]  # use this to get the results (maintains the sequence)
+
+    # or use normal for loop
+    for result in results:
+        print(result)
 
 
 end_time = time.perf_counter()
