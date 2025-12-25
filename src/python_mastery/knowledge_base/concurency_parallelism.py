@@ -1,4 +1,5 @@
 import asyncio
+import inspect
 import time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from functools import wraps
@@ -25,7 +26,7 @@ def timer(func):
         print(f"Total time taken to execute {total_time} second(s)")
         return result
 
-    return async_wrapper if asyncio.iscoroutinefunction(func) else sync_wrapper
+    return async_wrapper if inspect.iscoroutinefunction(func) else sync_wrapper
 
 
 def sleep(seconds=10):
@@ -38,6 +39,10 @@ async def sleep_async(seconds=10):
     print(f"Sleeping for {seconds} second(s)")
     await asyncio.sleep(seconds)
     print(f"Sleeping completed for {seconds} second(s)")
+
+
+def compute():
+    return [i * i * i + i - i // i for i in range(1, 10000000)]
 
 
 @timer
@@ -118,6 +123,28 @@ async def execute_sleep_async():
     return results
 
 
+@timer
+def execute_compute():
+    for _ in range(10):
+        compute()
+
+
+@timer
+def execute_compute_with_thread_pool():
+    with ThreadPoolExecutor() as pool:
+        futures = [pool.submit(compute) for _ in range(10)]
+        for f in futures:
+            f.result()  # IMPORTANT
+
+
+@timer
+def execute_compute_with_process_pool():
+    with ProcessPoolExecutor() as pool:
+        futures = [pool.submit(compute) for _ in range(10)]
+        for f in futures:
+            f.result()  # IMPORTANT
+
+
 if __name__ == "__main__":
     execute_sync()
     execute_with_thread()
@@ -125,3 +152,8 @@ if __name__ == "__main__":
     execute_with_thread_pool_submit()
     execute_with_thread_pool_map()
     asyncio.run(execute_sleep_async())
+
+    # cpu bound tasks
+    execute_compute()  # single threaded takes around 20 sec
+    execute_compute_with_thread_pool()  # winner here takes under 10 sec
+    execute_compute_with_process_pool()  # system crashes here due higher heap and IPC overhead
