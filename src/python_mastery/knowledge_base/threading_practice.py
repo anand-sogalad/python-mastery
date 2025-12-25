@@ -85,3 +85,28 @@ end_time = time.perf_counter()
 print(
     f"Time taken to complete tasks in async manner with loop: {round(end_time - start_time, 2)} second(s)"
 )
+
+start_counter = time.perf_counter()
+
+
+# with args
+def sleep3(seconds: int | float):
+    print(f"Sleeping for {seconds} second(s)")
+    time.sleep(seconds)
+    print("Sleeping finished")
+
+
+# creating threads
+threads: list[threading.Thread] = []
+for _ in range(10):
+    thread = threading.Thread(target=sleep3, args=(10,))
+    thread.start()
+    threads.append(thread)
+
+# wait for threads to finish their task
+for thread in threads:
+    thread.join()
+
+end_time = time.perf_counter()
+
+print(f"Finished in {round(end_time - start_time, 2)}")
