@@ -8,7 +8,7 @@ start_time = time.perf_counter()
 
 def download_image(url: str):
     image_name = (
-        "src/python_mastery/knowledge_base/downloaded/" + url.split("/")[-1] + ".jpg"
+        "src/python_mastery/knowledge_base/multi_threaded/downloaded/" + url.split("/")[-1] + ".jpg"
     )  # get the image name for saving as file
     image = requests.get(url).content  # save the image content
 
