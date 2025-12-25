@@ -56,3 +56,32 @@ t3.join()
 end_time = time.perf_counter()
 
 print(f"Time taken to complete tasks in async manner: {round(end_time - start_time, 2)} second(s)")
+
+
+# say we are calling some function 10 times, careating and managing threads manually may become big code. we can use for loop for it
+
+start_time = time.perf_counter()
+
+
+def sleep2():
+    print("Sleeping for second")
+    time.sleep(1)
+    print("Sleeping finished")
+
+
+# if I want to call this 10 times in each thread, we can simply use for loop
+threads: list[threading.Thread] = []
+for _ in range(10):
+    thread = threading.Thread(target=sleep2)
+    thread.start()
+    threads.append(thread)
+
+# wait for all threads to complete
+for thread in threads:
+    thread.join()
+
+end_time = time.perf_counter()
+
+print(
+    f"Time taken to complete tasks in async manner with loop: {round(end_time - start_time, 2)} second(s)"
+)
