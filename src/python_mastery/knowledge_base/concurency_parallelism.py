@@ -29,13 +29,13 @@ def timer(func):
     return async_wrapper if inspect.iscoroutinefunction(func) else sync_wrapper
 
 
-def sleep(seconds=10):
+def sleep(seconds: int = 10):
     print(f"Sleeping for {seconds} second(s)")
     time.sleep(seconds)
     print(f"Sleeping completed for {seconds} second(s)")
 
 
-async def sleep_async(seconds=10):
+async def sleep_async(seconds: int = 10):
     print(f"Sleeping for {seconds} second(s)")
     await asyncio.sleep(seconds)
     print(f"Sleeping completed for {seconds} second(s)")
