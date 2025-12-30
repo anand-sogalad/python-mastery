@@ -7,6 +7,9 @@ exclude = [
     ".ruff_cache",
     "dist",
     "build",
+    ".vscode",
+    "venv",
+    "site-packages",
 ]
 
 line-length = 100
