@@ -5,3 +5,16 @@ description = "Practice python"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = ["requests>=2.32.5"]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
